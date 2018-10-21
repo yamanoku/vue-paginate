@@ -353,6 +353,9 @@
       : vm.listOfPages
     return allLinks.map(function (link) {
       var data = {
+        attrs: {
+          type: "button",
+        },
         on: {
           click: function (e) {
             e.preventDefault()
@@ -375,7 +378,7 @@
       var linkText = link === vm.stepLinks.next || link === vm.stepLinks.prev
         ? link
         : link + 1 // it means it's a number
-      return h('li', { class: liClasses }, [h('a', data, linkText)])
+      return h('li', { class: liClasses }, [h('button', data, linkText)])
     })
   }
 
@@ -395,6 +398,9 @@
 
     return limitedLinks.map(function (link, index) {
       var data = {
+        attrs: {
+          type: "button",
+        },
         on: {
           click: function (e) {
             e.preventDefault()
@@ -419,7 +425,7 @@
       // then incremented by 1 (since it's 0 based).
       // otherwise, do nothing (so, it's a symbol).
       var text = (link === parseInt(link, 10)) ? link + 1 : link
-      return h('li', { class: liClasses }, [h('a', data, text)])
+      return h('li', { class: liClasses }, [h('button', data, text)])
     })
   }
 
@@ -443,8 +449,8 @@
     }
     var nextListData = { class: ['next', vm.currentPage >= lastPage ? 'disabled' : ''] }
     var prevListData = { class: ['prev', vm.currentPage <= 0 ? 'disabled' : ''] }
-    var prevLink = h('li', prevListData, [h('a', prevData, vm.simple.prev)])
-    var nextLink = h('li', nextListData, [h('a', nextData, vm.simple.next)])
+    var prevLink = h('li', prevListData, [h('button', prevData, vm.simple.prev)])
+    var nextLink = h('li', nextListData, [h('button', nextData, vm.simple.next)])
     return [prevLink, nextLink]
   }
 
@@ -478,7 +484,7 @@
     }
 
     if (link === currentPage) {
-      liClass.push('active')
+      liClass.push('buttonctive')
     }
 
     if (link === prev && currentPage <= 0) {

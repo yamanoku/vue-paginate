@@ -152,6 +152,9 @@ function getFullLinks (vm, h) {
     : vm.listOfPages
   return allLinks.map(link => {
     const data = {
+      attrs: {
+        type: "button",
+      },
       on: {
         click: (e) => {
           e.preventDefault()
@@ -174,7 +177,7 @@ function getFullLinks (vm, h) {
     const linkText = link === vm.stepLinks.next || link === vm.stepLinks.prev
       ? link
       : link + 1 // it means it's a number
-    return h('li', { class: liClasses }, [h('a', data, linkText)])
+    return h('li', { class: liClasses }, [h('button', data, linkText)])
   })
 }
 
@@ -194,6 +197,9 @@ function getLimitedLinks (vm, h) {
 
   return limitedLinks.map((link, index) => {
     const data = {
+      attrs: {
+        type: "button",
+      },
       on: {
         click: (e) => {
           e.preventDefault()
@@ -218,7 +224,7 @@ function getLimitedLinks (vm, h) {
     // then incremented by 1 (since it's 0 based).
     // otherwise, do nothing (so, it's a symbol).
     const text = (link === parseInt(link, 10)) ? link + 1 : link
-    return h('li', { class: liClasses }, [h('a', data, text)])
+    return h('li', { class: liClasses }, [h('button', data, text)])
   })
 }
 
@@ -242,8 +248,8 @@ function getSimpleLinks (vm, h) {
   }
   const nextListData = { class: ['next', vm.currentPage >= lastPage ? 'disabled' : ''] }
   const prevListData = { class: ['prev', vm.currentPage <= 0 ? 'disabled' : ''] }
-  const prevLink = h('li', prevListData, [h('a', prevData, vm.simple.prev)])
-  const nextLink = h('li', nextListData, [h('a', nextData, vm.simple.next)])
+  const prevLink = h('li', prevListData, [h('button', prevData, vm.simple.prev)])
+  const nextLink = h('li', nextListData, [h('button', nextData, vm.simple.next)])
   return [prevLink, nextLink]
 }
 
@@ -274,7 +280,7 @@ function getClassesForLink(link, currentPage, lastPage, { prev, next }) {
   }
 
   if (link === currentPage) {
-    liClass.push('active')
+    liClass.push('buttonctive')
   }
 
   if (link === prev && currentPage <= 0) {
