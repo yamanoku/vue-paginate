@@ -484,7 +484,7 @@
     }
 
     if (link === currentPage) {
-      liClass.push('buttonctive')
+      liClass.push('active')
     }
 
     if (link === prev && currentPage <= 0) {

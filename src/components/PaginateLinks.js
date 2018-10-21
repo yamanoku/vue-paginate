@@ -280,7 +280,7 @@ function getClassesForLink(link, currentPage, lastPage, { prev, next }) {
   }
 
   if (link === currentPage) {
-    liClass.push('buttonctive')
+    liClass.push('active')
   }
 
   if (link === prev && currentPage <= 0) {
